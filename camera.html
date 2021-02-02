@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	
+	<!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+</head>
+
+<body>
+	<div class="player">
+		<video id="viewer"></video>
+	</div>
+  <button onclick="" id="snap">snap</button>
+  <div style="z-index: 1;">
+	<canvas id="res" width="700px" height="1000px" >
+	</canvas>
+</div>
+	<script>
+		const video = document.getElementById("player");
+     const viewer = document.getElementById("viewer");
+     const snap = document.getElementById("snap");
+     const canvas = document.getElementById("res");
+    var stream = navigator.mediaDevices.getUserMedia({
+       video:true,
+       audio:false
+
+      
+     }).then((view)=>{
+       viewer.srcObject= view;
+       viewer.play()
+       return viewer
+     }).catch((err)=>{
+      console.log("error: "+err)
+     }).then((viewer)=>{
+          viewer.onplaying=()=>{
+            console.log("playing");
+            viewer.videoHeight / (viewer.videoWidth);
+         //   viewer.setAttribute("width",500)
+            canvas.toDataURL('image/png')
+           
+          }  
+     })
+      
+          
+           // canvas.style.display="block";
+     
+      var pm = prompt("enter your name")
+        console.log(pm)
+       
+     
+          
+	</script>
+<script async src="async.js"></script>
+</body>
+
+</html>
